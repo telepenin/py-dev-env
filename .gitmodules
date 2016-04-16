@@ -1,0 +1,15 @@
+[submodule "buildout_example"]
+	path = buildout_example
+	url = https://github.com/prefer/buildout_example
+[submodule "django_example"]
+	path = django_example
+	url = https://github.com/prefer/django_example
+[submodule "virtualenv_example"]
+	path = virtualenv_example
+	url = https://github.com/prefer/virtualenv_example
+[submodule "ansible_example"]
+	path = ansible_example
+	url = https://github.com/prefer/ansible_example
+[submodule "docker_example"]
+	path = docker_example
+	url = https://github.com/prefer/docker_example
