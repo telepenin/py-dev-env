@@ -13,3 +13,9 @@
 [submodule "docker_example"]
 	path = docker_example
 	url = https://github.com/prefer/docker_example
+[submodule "todomvc-django-backbone/todomvc-django"]
+	path = todomvc-django-backbone/todomvc-django
+	url = https://github.com/prefer/todomvc-django
+[submodule "todomvc-django-backbone/todomvc-backbone"]
+	path = todomvc-django-backbone/todomvc-backbone
+	url = https://github.com/prefer/todomvc-backbone
