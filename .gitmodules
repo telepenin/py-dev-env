@@ -1,9 +1,6 @@
 [submodule "buildout_example"]
 	path = buildout_example
 	url = https://github.com/prefer/buildout_example
-[submodule "django_example"]
-	path = django_example
-	url = https://github.com/prefer/django_example
 [submodule "virtualenv_example"]
 	path = virtualenv_example
 	url = https://github.com/prefer/virtualenv_example
