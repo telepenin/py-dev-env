@@ -13,15 +13,20 @@ Vagrant.configure(2) do |config|
   config.vm.define "buildout" do |buildout|
     buildout.vm.hostname = "buildout"
     buildout.vm.network "forwarded_port", guest: 8000, host: 8001
-    buildout.vm.provision :shell, path: "buildout_example/provision.sh"
+    buildout.vm.provision :shell,
+        privileged: false,
+        path: "buildout_example/provision.sh"
   end
 
   config.vm.define "virtualenv" do |virtualenv|
     virtualenv.vm.hostname = "virtualenv"
     virtualenv.vm.network "forwarded_port", guest: 8000, host: 8002
-    virtualenv.vm.provision :shell, path: "virtualenv_example/provision.sh"
-    virtualenv.vm.provision :shell, privileged: false,
-        path: "virtualenv_example/create_virtualenv.sh"
+    virtualenv.vm.provision :shell,
+        path: "virtualenv_example/sudo_provision.sh"
+
+    virtualenv.vm.provision :shell,
+        privileged: false,
+        path: "virtualenv_example/provision.sh"
   end
 
   config.vm.define "ansible" do |ansible|
@@ -29,7 +34,7 @@ Vagrant.configure(2) do |config|
     ansible.vm.network "forwarded_port", guest: 8000, host: 8003
 
     ansible.vm.provision "ansible" do |ans|
-        ans.playbook = "ansible_example/provision.yml"
+        ans.playbook = "ansible_example/vagrant.yml"
     end
   end
 
