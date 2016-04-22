@@ -48,12 +48,12 @@ $ vagrant ssh docker
 (vagrant)$ docker build -t prefer/backend .
 
 # Run migration
-(vagrant)$ docker run --rm -v $(pwd):/data prefer/backend \
+(vagrant)$ docker run --rm -v $(pwd):/data/back prefer/backend \
     ./manage.py migrate --run-syncd
 
 # Run the server
 (vagrant)$ cd /vagrant/todomvc-django-backbone/
-(vagrant)$ docker run -d -p "8000:8000" \
+(vagrant)$ docker run -d -p "8000:8000" --name todomvc-backend \
     -v $(pwd)/todomvc-django:/data/back \
     -v $(pwd)/todomvc-backbone:/data/todomvc-backbone \ 
     prefer/backend ./manage.py runserver 0.0.0.0:8000

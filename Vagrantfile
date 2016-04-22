@@ -10,9 +10,20 @@ Vagrant.configure(2) do |config|
     config.cache.scope = :box
   end
 
+    config.vm.provision "shell", privileged: false, inline: <<-SHELL
+        echo "export PROJECT_DIR=/vagrant/todomvc-django-backbone" >> ~/.profile
+    SHELL
+
+   config.vm.provision :shell, privileged: false, path: "cleanup.sh"
+
   config.vm.define "buildout" do |buildout|
     buildout.vm.hostname = "buildout"
     buildout.vm.network "forwarded_port", guest: 8000, host: 8001
+
+    buildout.vm.provision :shell,
+        privileged: false,
+        path: "buildout_example/cleanup.sh"
+
     buildout.vm.provision :shell,
         privileged: false,
         path: "buildout_example/provision.sh"
