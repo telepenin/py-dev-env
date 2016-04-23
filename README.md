@@ -7,8 +7,8 @@ Provision examples
 $ vagrant up virtualenv
 $ vagrant ssh virtualenv
 (vagrant)$ workon todo-django
-(vagrant)(todo-django)$ cd /vagrant/todomvc-django-backbone/todomvc-django/
-(vagrant)(todo-django)$ ./manage.py runserver 0.0.0.0:8000
+(vagrant)(todomvc-django)$ cd /vagrant/todomvc-django-backbone/todomvc-django/
+(vagrant)(todomvc-django)$ ./manage.py runserver 0.0.0.0:8000
 ```
 
 ## Buildout
@@ -24,8 +24,9 @@ $ vagrant ssh buildout
 ```bash
 $ vagrant up ansible
 $ vagrant ssh ansible
-(vagrant)$ cd /vagrant/todomvc-django-backbone
-(vagrant)$ bin/django-manage runserver 0.0.0.0:8000
+(vagrant)(todomvc-django)$ source .virtualenv/todomvc-django/bin/activate
+(vagrant)(todomvc-django)$ cd /vagrant/todomvc-django-backbone/todomvc-django
+(vagrant)(todomvc-django)$ ./manage runserver 0.0.0.0:8000
 ```
 
 ## Docker 
