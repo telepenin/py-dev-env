@@ -5,7 +5,7 @@ if [ -z "$PROJECT_DIR" ]; then
     exit 1
 fi
 
-rm -r "$PROJECT_DIR"/todomvc-backbone/bower_components
-rm "$PROJECT_DIR"/todomvc-django/db.sqlite3
+rm -rf "$PROJECT_DIR"/todomvc-backbone/bower_components
+rm -rf "$PROJECT_DIR"/todomvc-django/db.sqlite3
 
 echo "Cleanup successful"

@@ -26,7 +26,7 @@ $ vagrant up ansible
 $ vagrant ssh ansible
 (vagrant)(todomvc-django)$ source .virtualenv/todomvc-django/bin/activate
 (vagrant)(todomvc-django)$ cd /vagrant/todomvc-django-backbone/todomvc-django
-(vagrant)(todomvc-django)$ ./manage runserver 0.0.0.0:8000
+(vagrant)(todomvc-django)$ ./manage.py runserver 0.0.0.0:8000
 ```
 
 ## Docker 
@@ -35,26 +35,27 @@ $ vagrant ssh ansible
 $ vagrant up docker
 $ vagrant ssh docker
 (vagrant)$ cd /vagrant/todomvc-django-backbone/todomvc-backbone
+(vagrant)$ sudo su
 
 # Create frontend image
-(vagrant)$ docker build -t prefer/frontend .
+(vagrant)# docker build -t prefer/frontend .
 
 # Get js dependencies
-(vagrant)$ docker run --privileged=true --rm \
+(vagrant)# docker run --privileged=true --rm \
     -v $(pwd):/data prefer/frontend \
     cp -a /tmp/bower_components /data/bower_components
 
 # Create backend image
-(vagrant)$ cd /vagrant/todomvc-django-backbone/todomvc-django
-(vagrant)$ docker build -t prefer/backend .
+(vagrant)# cd /vagrant/todomvc-django-backbone/todomvc-django
+(vagrant)# docker build -t prefer/backend .
 
 # Run migration
-(vagrant)$ docker run --rm -v $(pwd):/data/back prefer/backend \
+(vagrant)# docker run --rm -v $(pwd):/data/back prefer/backend \
     ./manage.py migrate --run-syncd
 
 # Run the server
-(vagrant)$ cd /vagrant/todomvc-django-backbone/
-(vagrant)$ docker run -d -p "8000:8000" --name todomvc-backend \
+(vagrant)# cd /vagrant/todomvc-django-backbone/
+(vagrant)# docker run -d -p "8000:8000" --name todomvc-backend \
     -v $(pwd)/todomvc-django:/data/back \
     -v $(pwd)/todomvc-backbone:/data/todomvc-backbone \ 
     prefer/backend ./manage.py runserver 0.0.0.0:8000
